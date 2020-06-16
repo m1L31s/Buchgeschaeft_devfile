@@ -100,19 +100,19 @@ commands:
         type: commandLine
         command: 'bin/jboss-cli.sh --connect command=:restart'
         component: wildfly
-  - name: build and run Buchgeschaeft project
-    actions:
-      - workdir: '${CHE_PROJECTS_ROOT}/Buchgeschaeft'
-        type: exec
-        command: mvn clean install && java -jar ./target/*.jar
-        component: maven
   - name: Deploy Buchgeschaeft Project to WildFly
+    previewUrl:
+      port: 8080
+      path: /Buchgeschaeft/BuchEJB?wsdl
     actions:
       - workdir: '${CHE_PROJECTS_ROOT}/Buchgeschaeft'
         type: commandLine
         command: 'mvn wildfly:deploy'
         component: maven
   - name: Undeploy Buchgeschaeft Project from WildFly
+    previewUrl:
+      port: 9990
+      path: /console
     actions:
       - workdir: '${CHE_PROJECTS_ROOT}/Buchgeschaeft'
         type: commandLine
