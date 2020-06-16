@@ -69,37 +69,6 @@ components:
     alias: wildfly
 apiVersion: 1.0.0
 commands:
-  - name: Start WildFly Web Server
-    previewUrl:
-      port: 8080
-    actions:
-      - workdir: wildfly
-        type: commandLine
-        command: bin/standalone.sh -b=0.0.0.0 -bmanagement=0.0.0.0
-        component: wildfly
-  - name: Add WildFly Users
-    previewUrl:
-      port: 9990
-      path: /console
-    actions:
-      - workdir: wildfly
-        type: commandLine
-        command: >-
-          bin/add-user.sh -m -u hnu -p hnu -g admin,developer && echo \\\"User: 
-          hnu , Password: hnu\\\"
-        component: wildfly
-  - name: Stop WildFly Server
-    actions:
-      - workdir: wildfly
-        type: commandLine
-        command: 'bin/jboss-cli.sh --connect command=:shutdown'
-        component: wildfly
-  - name: Restart WildFly Server
-    actions:
-      - workdir: wildfly
-        type: commandLine
-        command: 'bin/jboss-cli.sh --connect command=:restart'
-        component: wildfly
   - name: Deploy Buchgeschaeft Project to WildFly
     previewUrl:
       port: 8080
